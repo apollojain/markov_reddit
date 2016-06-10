@@ -1,0 +1,35 @@
+{% extends "default.html" %}
+{% block header %}
+	<link rel="stylesheet" href="static/js/typed.js">
+	<script>
+	var title = "{{title}}";
+	var post = "{{post}}";
+	var title_list = title.split(".");
+	for(var i = 0; i < title_list.length; i++){
+		title_list[i] += ".";
+	}
+	var post_list = post.split(".");
+	for(var j = 0; j < post_list.length; j++){
+		post_list[j] += ".";
+	}
+	$(function(){
+      $(".title").typed({
+        strings: title_list,
+        typeSpeed: 0
+      });
+      $(".post").typed({
+        strings: post_list,
+        typeSpeed: 0
+      });
+  	});	
+	</script>
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+
+    <h1 class="title">{{title}}</h1>
+    <p class="post">{{post}}</p> 
+  </div>
+ </div>
+{% endblock %}
