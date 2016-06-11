@@ -1,9 +1,10 @@
-import re, random, consume
+import re, random, consume, itertools
 
 def markov_dictionary(str_array):
+	str_array = list(itertools.chain(*str_array))
 	dictionary = {}
+
 	for string in str_array: 
-		print string
 		string = " .".join(string.split("."))
 		word_array = re.split("\s+", string)
 		for i in range(1, len(word_array)):
@@ -41,11 +42,15 @@ def construct_chain(dictionary, length):
 	text = text.replace(" .", ".")
 	return text 
 
-def markov_chain(r, subreddits, title_length, submission_length):
-	titles, submissions = consume.consume_by_subreddits(r, subreddits)
+def markov_chain(subreddits, title_length, submission_length):
+	titles, submissions = consume.consume_by_subreddits(subreddits)
+	print titles
 	title_dictionary = markov_dictionary(titles)
 	submission_dictionary = markov_dictionary(submissions)
+	print "okay..."
+	print title_dictionary
 	title_text = construct_chain(title_dictionary, title_length)
+	print submission_dictionary
 	submission_text = construct_chain(submission_dictionary, submission_length)
 	return_pair = [title_text, submission_text]
 	return return_pair

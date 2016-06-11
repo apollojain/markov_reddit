@@ -8,7 +8,7 @@ def actual_post(string):
 def combine_arrays(twod_array, i):
 	return reduce(lambda x, y: x + [y[i]], twod_array)
 
-def consume_by_subreddit(r, subreddit, n=50):
+def consume_by_subreddit(subreddit, n=50):
 	try: 
 		r = praw.Reddit('OAuth Webserver example by u/_Daimon_ ver 0.1. See '
                     'https://praw.readthedocs.org/en/latest/'
@@ -28,8 +28,6 @@ def consume_by_subreddits(subreddits, n=50):
 	
 
 	titles = combine_arrays(initial_submissions, 0)
-	print 'ok do we get here?'
-
 	submissions = combine_arrays(initial_submissions, 1)
 	return_array = [titles, submissions]
 	return return_array
