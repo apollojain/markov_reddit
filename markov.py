@@ -3,6 +3,7 @@ import re, random, consume
 def markov_dictionary(str_array):
 	dictionary = {}
 	for string in str_array: 
+		print string
 		string = " .".join(string.split("."))
 		word_array = re.split("\s+", string)
 		for i in range(1, len(word_array)):
